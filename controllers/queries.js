@@ -13,12 +13,12 @@ const pool = new Pool({
 })
 
 exports.getHome = function(req, res) {
-  pool.query('SELECT * from $1 ORDER BY $2 ASC', [process.env.TABLE_NAME, process.env.UNIQUE_ID], (error, results) => {
+  pool.query('SELECT * from '+process.env.TABLE_NAME+' ORDER BY '+process.env.UNIQUE_ID+' ASC', (error, results) => {
     if (error) {
       logger.error(error)
     }
     var data = results.rows;
-    var firstname = results.rows[0].username
+    
     //console.log(data);
     res.render('home', { contentList:data,title:'Table_Title' });
   });

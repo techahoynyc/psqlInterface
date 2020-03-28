@@ -17,7 +17,7 @@ loggers.add(process.env.LOGGER_NAME, {
   ),
   transports: [
     new transports.File({
-      filename: './logs/'process.env.LOGGER_NAME'.log',
+      filename: './logs/'+process.env.LOGGER_NAME+'.log',
       datePattern: 'YYYY-MM-DD',
       level: 'info',
     }),
@@ -33,7 +33,7 @@ app.engine('hbs', exphbs({extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-logger.info('Starting 'process.env.LOGGER_NAME'...')
+logger.info('Starting '+process.env.LOGGER_NAME+'...')
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
